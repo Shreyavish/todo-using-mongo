@@ -137,7 +137,7 @@ function ToDoList()
 
         const message = await apihelper.deleteTodo(id)
         console.log(message)
-        if(message.data === "done"){
+        if(message.statusText === "OK"){
         
             const items = [...completed].filter(task => task.id !== id);
             setCompleted(items);
