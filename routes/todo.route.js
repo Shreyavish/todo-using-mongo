@@ -18,7 +18,7 @@ router.post("/createtodo", (req, res, next) => {
 });
   
 // READ Students
-router.get("/gettodos", (req, res) => {
+router.get("/todos", (req, res) => {
   todoSchema.find((error, data) => {
     if (error) {
       return next(error);
@@ -29,29 +29,30 @@ router.get("/gettodos", (req, res) => {
 });
 
   // Update Student Data
-  router.put("/updatetodo", (req, res, next) => {
-    todoSchema.findByIdAndUpdate(
-      req.params.id,
-      {
-        $$set: { is_completed: req.body.status } 
-      },
-      (error, data) => {
-        if (error) {
-          return next(error);
-          console.log(error);
-        } else {
-          res.json(data);
-          console.log("Student updated successfully !");
-        }
+  router.put("/updatetodo/:id", (req, res) => {
+    todoSchema.findOneAndUpdate(
+      {id: req.params.id}, 
+      {$set: {is_completed: req.body.status }
+    },
+     {new: true}, 
+     (err, doc) => {
+      if (err) {
+          console.log("Something wrong when updating data!");
       }
-    );
+      else{
+        res.send("done");
+      }
+      console.log(doc);
   });
+  });
+
+
   
 // Delete Student
 router.delete("/deletetodo/:id", 
 (req, res, next) => {
-  todoSchema.findByIdAndRemove(
-      req.params.id, (error, data) => {
+  todoSchema.findOneAndDelete(
+      {"id" : req.params.id}, (error, data) => {
     if (error) {
       return next(error);
     } else {

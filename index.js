@@ -4,6 +4,13 @@ let mongoose = require('mongoose');
 let cors = require('cors');
 let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
+
+const app = express();
+
+app.use(express.json());
+
+
+const router = require('./routes/todo.route');
 const username = "shreyavish";
 const password = "Shreya20@-";
 const cluster = "cluster0.4cb3c";
@@ -19,7 +26,11 @@ db.on("error", console.error.bind(console, "connection error: "));
 db.once("open", function () {
   console.log("Connected successfully");
 });
-
+app.use(router);
+const port = process.env.PORT || 4000;
+const server = app.listen(port, () => {
+  console.log('Connected to port ' + port)
+})
 /*
 let express = require('express');
 let mongoose = require('mongoose');
