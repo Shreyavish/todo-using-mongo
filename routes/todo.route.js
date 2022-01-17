@@ -18,7 +18,7 @@ router.post("/createtodo", (req, res, next) => {
 });
   
 // READ Students
-router.get("/todos", (req, res) => {
+router.get("/gettodos", (req, res) => {
   todoSchema.find((error, data) => {
     if (error) {
       return next(error);
@@ -29,10 +29,10 @@ router.get("/todos", (req, res) => {
 });
 
   // Update Student Data
-  router.put("/updatetodo/:id", (req, res) => {
+  router.put("/updatetodo/:id/:payload", (req, res) => {
     todoSchema.findOneAndUpdate(
       {id: req.params.id}, 
-      {$set: {is_completed: req.body.status }
+      {$set: {is_completed: req.params.payload }
     },
      {new: true}, 
      (err, doc) => {
