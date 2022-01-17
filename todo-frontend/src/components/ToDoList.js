@@ -122,12 +122,12 @@ function ToDoList()
 
         const message = await apihelper.deleteTodo(id)
         console.log(message)
-        if(message.status === 200){
+        if(message.statusText === "OK"){
         const items = [...todos].filter(task => task.id !== id);
         setTodos(items);
         }
         else{
-            alert("failed to delete");
+           alert("failed to delete");
         }
     }
     

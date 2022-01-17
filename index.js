@@ -22,6 +22,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 const noop = () => {};
 
+
+
+const path = require("path");
+
+// Step 1:
+app.use(express.static(path.resolve(__dirname, "./todo-frontend/build")));
+// Step 2:
+app.get("/", function (request, response) {
+  response.sendFile(path.resolve(__dirname, "./todo-frontend/build", "index.html"));
+});
+
+
 const router = require('./routes/todo.route');
 const username = "shreyavish";
 const password = "Shreya20@-";
