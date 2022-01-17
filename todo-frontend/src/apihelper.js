@@ -1,9 +1,9 @@
 import axios from "axios"
 
-const create_API_URL = "http://localhost:4000/createtodo/"
-const get_API_URL = "http://localhost:4000/gettodos/"
-const delete_API_URL ="http://localhost:4000/deletetodo/"
-const put_API_URL ="http://localhost:4000/updatetodo/"
+const create_API_URL = "http://todo-app-shreya.herokuapp.com/createtodo/"
+const get_API_URL = "http://todo-app-shreya.herokuapp.com/gettodos/"
+const delete_API_URL ="http://todo-app-shreya.herokuapp.com/deletetodo/"
+const put_API_URL ="http://todo-app-shreya.herokuapp.com/updatetodo/"
 
 async function createTodo(task) {
     //console.log(task)
