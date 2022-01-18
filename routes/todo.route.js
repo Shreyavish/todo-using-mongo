@@ -2,10 +2,10 @@ let mongoose = require("mongoose"),
   express = require("express"),
   router = express.Router();
   
-// Student Model
+// todo Model
 let todoSchema = require("../models/todo");
   
-// CREATE Student
+// CREATE todo
 router.post("/createtodo", (req, res, next) => {
   todoSchema.create(req.body.task, (error, data) => {
     if (error) {
@@ -17,7 +17,7 @@ router.post("/createtodo", (req, res, next) => {
   });
 });
   
-// READ Students
+// READ todos
 router.get("/gettodos", (req, res) => {
   todoSchema.find((error, data) => {
     if (error) {
@@ -28,7 +28,7 @@ router.get("/gettodos", (req, res) => {
   });
 });
 
-  // Update Student Data
+  // Update todo Data
   router.put("/updatetodo/:id/:payload", (req, res) => {
     todoSchema.findOneAndUpdate(
       {id: req.params.id}, 
@@ -48,7 +48,7 @@ router.get("/gettodos", (req, res) => {
 
 
   
-// Delete Student
+// Delete todo task
 router.delete("/deletetodo/:id", 
 (req, res, next) => {
   todoSchema.findOneAndDelete(
